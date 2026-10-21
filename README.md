@@ -2,6 +2,12 @@
 
 **Extract, normalise and classify semiconductor part numbers from free text.**
 
+[![CI](https://github.com/yjjc1/chipnum/actions/workflows/ci.yml/badge.svg)](https://github.com/yjjc1/chipnum/actions/workflows/ci.yml)
+[![Vendor table audit](https://github.com/yjjc1/chipnum/actions/workflows/audit.yml/badge.svg)](https://github.com/yjjc1/chipnum/actions/workflows/audit.yml)
+[![PyPI](https://img.shields.io/pypi/v/chipnum.svg)](https://pypi.org/project/chipnum/)
+[![Python](https://img.shields.io/pypi/pyversions/chipnum.svg)](https://pypi.org/project/chipnum/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 `chipnum` pulls manufacturer part numbers (MPNs) out of prose, tables, CSV
 cells and BOM files, normalises the spellings people actually type, and
 resolves each one to a vendor and a component category.
