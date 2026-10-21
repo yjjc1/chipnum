@@ -3,6 +3,10 @@ name: CI
 on:
   push:
     branches: [main]
+    # Version tags must trigger the workflow too, otherwise the publish job
+    # below never runs: with only "branches" specified, a tag push is
+    # filtered out before the job's own `if` condition is ever evaluated.
+    tags: ["v*"]
   pull_request:
   workflow_dispatch:
 
