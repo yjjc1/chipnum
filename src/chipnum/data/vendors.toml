@@ -1,0 +1,993 @@
+# chipnum vendor prefix database
+#
+# Matching rules (see src/chipnum/vendors.py and docs/design.md):
+#
+#   1. Prefixes are matched longest-first, so "TMP117" resolves via "TMP"
+#      before "TM" is ever considered.
+#   2. A prefix shorter than MIN_PREFIX_LEN only wins if nothing longer
+#      matches. Two-letter prefixes are not evidence on their own.
+#   3. A part number that no prefix claims resolves to vendor=None. The tool
+#      reports "unknown" rather than guessing.
+#
+# Adding a vendor never requires touching Python code — see
+# docs/adding-vendors.md. Run `python -m chipnum.audit` after any edit.
+
+[[vendor]]
+name = "Texas Instruments"
+aliases = ["TI", "德州仪器", "德州"]
+prefixes = [
+  { p = "TMS", cat = "dsp" },
+  { p = "TLV", cat = "analog" },
+  { p = "TPS", cat = "power" },
+  { p = "TPS2", cat = "power" },
+  { p = "TPSM", cat = "power" },
+  { p = "TPS4", cat = "power" },
+  { p = "TPA", cat = "power" },
+  { p = "TPC", cat = "power" },
+  { p = "TPD", cat = "power" },
+  { p = "TPU", cat = "power" },
+  { p = "TPH", cat = "power" },
+  { p = "TLM", cat = "power" },
+  { p = "LMR", cat = "power" },
+  { p = "UCC", cat = "power" },
+  { p = "UCD", cat = "power" },
+  { p = "TMP", cat = "analog" },
+  { p = "TM4", cat = "mcu" },
+  { p = "MSP", cat = "mcu" },
+  { p = "C2000", cat = "dsp" },
+  { p = "OPA", cat = "analog" },
+  { p = "OPB", cat = "analog" },
+  { p = "DAC", cat = "analog" },
+  { p = "ADS", cat = "analog" },
+  { p = "REF", cat = "analog" },
+  { p = "INA", cat = "analog" },
+  { p = "TH", cat = "analog" },
+  { p = "TLE", cat = "automotive" },
+  { p = "TJA", cat = "automotive" },
+  { p = "TJT", cat = "automotive" },
+  { p = "TDA", cat = "analog" },
+  { p = "TDC", cat = "analog" },
+  { p = "TUSB", cat = "digital_interface" },
+  { p = "TMDS", cat = "digital_interface" },
+  { p = "ISO", cat = "digital_interface" },
+  { p = "DS", cat = "digital_interface" },
+  { p = "SN74", cat = "logic" },
+  { p = "SN65", cat = "digital_interface" },
+  { p = "CD54", cat = "logic" },
+  { p = "CD40", cat = "logic" },
+  { p = "TXB", cat = "digital_interface" },
+  { p = "PCM", cat = "audio" },
+  { p = "TAS", cat = "audio" },
+  { p = "PWL", cat = "power" },
+  { p = "TL", cat = "analog" },
+  { p = "LM", cat = "analog" },
+  { p = "LT", cat = "analog" },
+  { p = "TL0", cat = "analog" },
+  { p = "TLH", cat = "analog" },
+]
+
+[[vendor]]
+name = "STMicroelectronics"
+aliases = ["ST", "意法半导体", "意法"]
+prefixes = [
+  { p = "STM32", cat = "mcu" },
+  { p = "STM8", cat = "mcu" },
+  { p = "STM1", cat = "mcu" },
+  { p = "ST25", cat = "memory" },
+  { p = "ST10", cat = "mcu" },
+  { p = "ST7", cat = "mcu" },
+  { p = "M24", cat = "memory" },
+  { p = "M95", cat = "memory" },
+  { p = "M48", cat = "memory" },
+  { p = "M41", cat = "memory" },
+  { p = "L497", cat = "logic" },
+  { p = "L4", cat = "logic" },
+  { p = "L7", cat = "logic" },
+  { p = "L49", cat = "mcu" },
+  { p = "L62", cat = "power" },
+  { p = "L78", cat = "power" },
+  { p = "L78A", cat = "power" },
+  { p = "LM3S", cat = "mcu" },
+  { p = "LM3P", cat = "mcu" },
+  { p = "LM3L", cat = "mcu" },
+  { p = "VSC", cat = "digital_interface" },
+  { p = "VNF", cat = "power" },
+  { p = "TSV", cat = "power" },
+  { p = "TSE", cat = "power" },
+  { p = "TS3", cat = "analog" },
+  { p = "TS5", cat = "analog" },
+  { p = "MYS", cat = "power" },
+  { p = "VIP", cat = "power" },
+  { p = "SP", cat = "memory" },
+]
+
+[[vendor]]
+name = "NXP Semiconductors"
+aliases = ["NXP", "恩智浦", "飞利浦半导体"]
+prefixes = [
+  { p = "FS32", cat = "automotive" },
+  { p = "S32K", cat = "automotive" },
+  { p = "S32G", cat = "automotive" },
+  { p = "S32Z", cat = "automotive" },
+  { p = "S12Z", cat = "automotive" },
+  { p = "S12", cat = "mcu" },
+  { p = "MCX", cat = "mcu" },
+  { p = "MC337", cat = "automotive" },
+  { p = "MC339", cat = "automotive" },
+  { p = "MCF", cat = "mcu" },
+  { p = "LPC", cat = "mcu" },
+  { p = "TEA", cat = "power" },
+  { p = "PCA", cat = "logic" },
+  { p = "PCF", cat = "logic" },
+  { p = "SC16", cat = "logic" },
+  { p = "74HC", cat = "logic" },
+  { p = "74LVC", cat = "logic" },
+  { p = "74AVC", cat = "logic" },
+  { p = "74AHC", cat = "logic" },
+  { p = "PCF85", cat = "logic" },
+  { p = "NTF", cat = "memory" },
+  { p = "TE", cat = "digital_interface" },
+  { p = "FC3", cat = "mcu" },
+]
+
+[[vendor]]
+name = "Analog Devices"
+aliases = ["ADI", "亚德诺", "美信", "Maxim", "Maxim Integrated"]
+prefixes = [
+  { p = "ADM", cat = "analog" },
+  { p = "ADA", cat = "analog" },
+  { p = "ADX", cat = "analog" },
+  { p = "ADV", cat = "analog" },
+  { p = "ADu", cat = "analog" },
+  { p = "ADXL", cat = "sensor" },
+  { p = "ADT", cat = "analog" },
+  { p = "AD7", cat = "analog" },
+  { p = "AD8", cat = "analog" },
+  { p = "AD9", cat = "analog" },
+  { p = "AD5", cat = "analog" },
+  { p = "AD6", cat = "analog" },
+  { p = "AD4", cat = "analog" },
+  { p = "AD3", cat = "analog" },
+  { p = "AD2", cat = "analog" },
+  { p = "MAX318", cat = "analog" },
+  { p = "MAX", cat = "analog" },
+  { p = "LTC", cat = "analog" },
+  { p = "LTC6", cat = "analog" },
+  { p = "LTC2", cat = "analog" },
+  { p = "LT3", cat = "analog" },
+  { p = "HMC", cat = "analog" },
+  { p = "HMC7", cat = "analog" },
+  { p = "ADUC", cat = "analog" },
+  { p = "ADG", cat = "analog" },
+]
+
+[[vendor]]
+name = "Microchip Technology"
+aliases = ["Microchip", "微芯", "微芯科技", "ATMEL", "Atmel"]
+prefixes = [
+  { p = "ATSAMD", cat = "mcu" },
+  { p = "ATSAM", cat = "mcu" },
+  { p = "ATMEGA", cat = "mcu" },
+  { p = "ATTINY", cat = "mcu" },
+  { p = "AT90", cat = "mcu" },
+  { p = "ATSAMC", cat = "mcu" },
+  { p = "ATSPI", cat = "mcu" },
+  { p = "AT32", cat = "mcu" },
+  { p = "AT24", cat = "memory" },
+  { p = "AT25", cat = "memory" },
+  { p = "AT26", cat = "memory" },
+  { p = "AT45", cat = "memory" },
+  { p = "AT42", cat = "memory" },
+  { p = "AT16", cat = "memory" },
+  { p = "PIC16", cat = "mcu" },
+  { p = "PIC18", cat = "mcu" },
+  { p = "PIC24", cat = "mcu" },
+  { p = "PIC32", cat = "mcu" },
+  { p = "dsPIC", cat = "dsp" },
+  { p = "MCP2", cat = "memory" },
+  { p = "MCP1", cat = "memory" },
+  { p = "MCP3", cat = "memory" },
+  { p = "MCPW", cat = "memory" },
+  { p = "SST25", cat = "memory" },
+  { p = "SST39", cat = "memory" },
+  { p = "MXS", cat = "memory" },
+  { p = "DSPIC", cat = "dsp" },
+]
+
+[[vendor]]
+name = "Infineon Technologies"
+aliases = ["Infineon", "英飞凌", "IR", "International Rectifier"]
+prefixes = [
+  { p = "IRFP", cat = "discrete" },
+  { p = "IRFB", cat = "discrete" },
+  { p = "IRFH", cat = "discrete" },
+  { p = "IRF", cat = "discrete" },
+  { p = "IRZ", cat = "discrete" },
+  { p = "IRS", cat = "discrete" },
+  { p = "IRL", cat = "discrete" },
+  { p = "IR3", cat = "discrete" },
+  { p = "BSS", cat = "transistor" },
+  { p = "BSC", cat = "transistor" },
+  { p = "BUK", cat = "transistor" },
+  { p = "BSP", cat = "transistor" },
+  { p = "IGBT", cat = "discrete" },
+  { p = "IKW", cat = "discrete" },
+  { p = "IMW", cat = "discrete" },
+  { p = "IMBG", cat = "discrete" },
+  { p = "EiceDRIVER", cat = "automotive" },
+  { p = "1ED", cat = "automotive" },
+  { p = "2ED", cat = "automotive" },
+  { p = "6ED", cat = "automotive" },
+  { p = "PIL", cat = "power" },
+  { p = "FF6", cat = "discrete" },
+  { p = "FF11", cat = "discrete" },
+  { p = "FF8", cat = "discrete" },
+  { p = "AUO", cat = "logic" },
+  { p = "BT", cat = "transistor" },
+  { p = "BTS", cat = "transistor" },
+  { p = "IPD", cat = "discrete" },
+  { p = "IPB", cat = "discrete" },
+  { p = "IPW", cat = "discrete" },
+  { p = "IPB", cat = "discrete" },
+  { p = "SPW", cat = "discrete" },
+  { p = "IPD5", cat = "discrete" },
+]
+
+[[vendor]]
+name = "onsemi"
+aliases = ["onsemi", "ON Semiconductor", "安森美", "仙童", "ON Semi"]
+prefixes = [
+  { p = "NCP1", cat = "power" },
+  { p = "NCP2", cat = "power" },
+  { p = "NCP63", cat = "power" },
+  { p = "NCP", cat = "power" },
+  { p = "NCS", cat = "power" },
+  { p = "NCV", cat = "power" },
+  { p = "MUN", cat = "power" },
+  { p = "FDH", cat = "transistor" },
+  { p = "FDS", cat = "transistor" },
+  { p = "NVH", cat = "discrete" },
+  { p = "NVM", cat = "memory" },
+  { p = "SiC", cat = "discrete" },
+  { p = "AND", cat = "logic" },
+  { p = "NTT", cat = "power" },
+  { p = "MUR", cat = "transistor" },
+]
+
+[[vendor]]
+name = "Renesas Electronics"
+aliases = ["Renesas", "瑞萨", "Intersil"]
+prefixes = [
+  { p = "RX6", cat = "mcu" },
+  { p = "RL78", cat = "mcu" },
+  { p = "RL8", cat = "mcu" },
+  { p = "RA6", cat = "mcu" },
+  { p = "RA8", cat = "mcu" },
+  { p = "RH850", cat = "mcu" },
+  { p = "R8A", cat = "mcu" },
+  { p = "R7F", cat = "mcu" },
+  { p = "ISL9", cat = "power" },
+  { p = "ISL", cat = "power" },
+  { p = "RAA5", cat = "power" },
+  { p = "RAA", cat = "power" },
+  { p = "R5F", cat = "analog" },
+  { p = "HI3", cat = "analog" },
+  { p = "ICL", cat = "logic" },
+  { p = "uPD", cat = "logic" },
+  { p = "BR3", cat = "logic" },
+  { p = "BR4", cat = "logic" },
+]
+
+[[vendor]]
+name = "Nordic Semiconductor"
+aliases = ["Nordic", "Nordic Semi"]
+prefixes = [{ p = "nRF", cat = "wireless" }]
+
+[[vendor]]
+name = "Silicon Labs"
+aliases = ["Silicon Labs", "Silabs"]
+prefixes = [
+  { p = "EFM32", cat = "mcu" },
+  { p = "EFR32", cat = "wireless" },
+  { p = "Si10", cat = "mcu" },
+]
+
+[[vendor]]
+name = "GigaDevice"
+aliases = ["GigaDevice", "兆易创新", "GD"]
+prefixes = [
+  { p = "GD32", cat = "mcu" },
+  { p = "GD25", cat = "memory" },
+  { p = "GD2", cat = "memory" },
+  { p = "GD5", cat = "memory" },
+]
+
+[[vendor]]
+name = "Monolithic Power Systems"
+aliases = ["MPS", "芯源系统", "Monolithic Power"]
+prefixes = [
+  { p = "MPQ", cat = "power" },
+  { p = "MP2", cat = "power" },
+  { p = "MP3", cat = "power" },
+  { p = "MP5", cat = "power" },
+  { p = "MPD", cat = "power" },
+]
+
+[[vendor]]
+name = "Richtek Technology"
+aliases = ["Richtek", "立锜"]
+prefixes = [
+  { p = "RT5", cat = "power" },
+  { p = "RT8", cat = "power" },
+  { p = "RT9", cat = "power" },
+  { p = "RT4", cat = "power" },
+  { p = "RT6", cat = "power" },
+  { p = "RT7", cat = "power" },
+  { p = "RT3", cat = "power" },
+]
+
+[[vendor]]
+name = "Silergy Corp"
+aliases = ["Silergy", "矽力杰"]
+prefixes = [
+  { p = "SGM2", cat = "analog" },
+  { p = "SGM8", cat = "analog" },
+  { p = "SY8", cat = "power" },
+  { p = "SY9", cat = "power" },
+  { p = "CKS", cat = "power" },
+]
+
+[[vendor]]
+name = "Winbond Electronics"
+aliases = ["Winbond", "华邦"]
+prefixes = [
+  { p = "W25Q", cat = "memory" },
+  { p = "W25X", cat = "memory" },
+  { p = "W26", cat = "memory" },
+  { p = "W97", cat = "memory" },
+  { p = "W988", cat = "memory" },
+  { p = "W74", cat = "memory" },
+]
+
+[[vendor]]
+name = "Macronix"
+aliases = ["Macronix", "旺宏"]
+prefixes = [
+  { p = "MX25", cat = "memory" },
+  { p = "MX29", cat = "memory" },
+  { p = "MX30", cat = "memory" },
+  { p = "MX66", cat = "memory" },
+  { p = "MXL", cat = "memory" },
+  { p = "M25P", cat = "memory" },
+  { p = "M29P", cat = "memory" },
+]
+
+[[vendor]]
+name = "Cypress Semiconductor"
+aliases = ["Cypress", "赛普拉斯", "Infineon Cypress"]
+prefixes = [
+  { p = "CY8", cat = "mcu" },
+  { p = "CY7", cat = "mcu" },
+  { p = "CY5", cat = "mcu" },
+  { p = "S25FL", cat = "memory" },
+]
+
+[[vendor]]
+name = "ROHM Semiconductor"
+aliases = ["ROHM", "罗姆"]
+prefixes = [
+  { p = "BAV", cat = "discrete" },
+  { p = "BH", cat = "power" },
+  { p = "BD", cat = "discrete" },
+  { p = "BU", cat = "discrete" },
+  { p = "UM", cat = "analog" },
+  { p = "ML", cat = "analog" },
+  { p = "SHP", cat = "analog" },
+  { p = "SLA", cat = "analog" },
+]
+
+[[vendor]]
+name = "Diodes Incorporated"
+aliases = ["Diodes", "Diodes Inc"]
+prefixes = [
+  { p = "APM", cat = "power" },
+  { p = "SS14", cat = "discrete" },
+  { p = "SS18", cat = "discrete" },
+  { p = "SBR", cat = "discrete" },
+  { p = "MBR", cat = "discrete" },
+  { p = "SMA", cat = "discrete" },
+  { p = "SMB", cat = "discrete" },
+  { p = "ESD", cat = "discrete" },
+  { p = "ZMM", cat = "discrete" },
+  { p = "BAT", cat = "discrete" },
+  { p = "PTV", cat = "discrete" },
+  { p = "DF", cat = "discrete" },
+  { p = "TLH", cat = "logic" },
+]
+
+[[vendor]]
+name = "Vishay Intertechnology"
+aliases = ["Vishay"]
+prefixes = [
+  { p = "VSZ", cat = "discrete" },
+  { p = "BVS", cat = "capacitor" },
+  { p = "CRC", cat = "capacitor" },
+]
+
+[[vendor]]
+name = "Samsung Semiconductor"
+aliases = ["Samsung", "三星", "Samsung Electro-Mechanics"]
+prefixes = [
+  { p = "K4B", cat = "memory" },
+  { p = "K4A", cat = "memory" },
+  { p = "K4M", cat = "memory" },
+  { p = "K4", cat = "memory" },
+  { p = "KHA", cat = "memory" },
+  { p = "MUX", cat = "memory" },
+  { p = "CL10", cat = "capacitor" },
+  { p = "CL05", cat = "capacitor" },
+  { p = "SM3", cat = "memory" },
+]
+
+[[vendor]]
+name = "Micron Technology"
+aliases = ["Micron", "美光"]
+prefixes = [
+  { p = "MT40", cat = "memory" },
+  { p = "MT48", cat = "memory" },
+  { p = "M47", cat = "memory" },
+  { p = "M3", cat = "memory" },
+  { p = "D9", cat = "memory" },
+]
+
+[[vendor]]
+name = "Kioxia"
+aliases = ["Kioxia", "铠侠", "Toshiba Memory"]
+prefixes = [
+  { p = "TC58", cat = "memory" },
+  { p = "TH58", cat = "memory" },
+  { p = "KQ", cat = "memory" },
+]
+
+[[vendor]]
+name = "SK hynix"
+aliases = ["SK hynix", "海力士", "Hynix"]
+prefixes = [
+  { p = "HBM", cat = "memory" },
+  { p = "H5", cat = "memory" },
+  { p = "H9", cat = "memory" },
+]
+
+[[vendor]]
+name = "SanDisk"
+aliases = ["SanDisk", "闪迪"]
+prefixes = [
+  { p = "SD10", cat = "memory" },
+  { p = "SDIN", cat = "memory" },
+  { p = "iNAND", cat = "memory" },
+]
+
+[[vendor]]
+name = "Realtek"
+aliases = ["Realtek", "瑞昱", "Realtek Semiconductor"]
+prefixes = [
+  { p = "RTL8", cat = "connectivity" },
+  { p = "RTL9", cat = "connectivity" },
+  { p = "RTL", cat = "connectivity" },
+  { p = "Ameba", cat = "connectivity" },
+]
+
+[[vendor]]
+name = "Espressif Systems"
+aliases = ["Espressif", "乐鑫", "ESP"]
+prefixes = [
+  { p = "ESP32", cat = "wireless" },
+  { p = "ESP8", cat = "wireless" },
+  { p = "ESP", cat = "wireless" },
+]
+
+[[vendor]]
+name = "Qualcomm"
+aliases = ["Qualcomm", "高通", "QCOM"]
+prefixes = [
+  { p = "QCA9", cat = "connectivity" },
+  { p = "QCA", cat = "connectivity" },
+  { p = "QCC", cat = "connectivity" },
+  { p = "QCS", cat = "connectivity" },
+  { p = "MSM", cat = "connectivity" },
+  { p = "SM8", cat = "soc" },
+  { p = "SM7", cat = "soc" },
+]
+
+[[vendor]]
+name = "Broadcom"
+aliases = ["Broadcom", "博通"]
+prefixes = [
+  { p = "BCM2", cat = "connectivity" },
+  { p = "BCM", cat = "connectivity" },
+  { p = "BCMA", cat = "connectivity" },
+]
+
+[[vendor]]
+name = "Marvell Technology"
+aliases = ["Marvell"]
+prefixes = [
+  { p = "88E", cat = "connectivity" },
+  { p = "88Q", cat = "connectivity" },
+  { p = "PXD", cat = "connectivity" },
+]
+
+[[vendor]]
+name = "Lattice Semiconductor"
+aliases = ["Lattice", "莱迪思"]
+prefixes = [
+  { p = "LFE5U", cat = "programmable_logic" },
+  { p = "LFE2", cat = "programmable_logic" },
+  { p = "LFE", cat = "programmable_logic" },
+  { p = "LCMXO", cat = "programmable_logic" },
+]
+
+[[vendor]]
+name = "AMD Xilinx"
+aliases = ["Xilinx", "赛灵思", "AMD Xilinx"]
+prefixes = [
+  { p = "XC7A", cat = "programmable_logic" },
+  { p = "XC7Z", cat = "programmable_logic" },
+  { p = "XC7K", cat = "programmable_logic" },
+  { p = "XC7", cat = "programmable_logic" },
+  { p = "XC6S", cat = "programmable_logic" },
+  { p = "XC4", cat = "programmable_logic" },
+  { p = "XC3S", cat = "programmable_logic" },
+  { p = "XC2V", cat = "programmable_logic" },
+  { p = "XA7A", cat = "programmable_logic" },
+  { p = "XA9", cat = "programmable_logic" },
+  { p = "EP3C", cat = "programmable_logic" },
+  { p = "5CS", cat = "programmable_logic" },
+]
+
+[[vendor]]
+name = "Intel Altera"
+aliases = ["Altera", "Intel FPGA", "英特尔"]
+prefixes = [
+  { p = "AGEX", cat = "programmable_logic" },
+  { p = "Stratix", cat = "programmable_logic" },
+  { p = "Cyclone", cat = "programmable_logic" },
+  { p = "MAX10", cat = "programmable_logic" },
+  { p = "10M", cat = "programmable_logic" },
+  { p = "5CS", cat = "programmable_logic" },
+  { p = "5SE", cat = "programmable_logic" },
+]
+
+[[vendor]]
+name = "Murata Manufacturing"
+aliases = ["Murata", "村田"]
+prefixes = [
+  { p = "GRM", cat = "capacitor" },
+  { p = "GCM", cat = "capacitor" },
+  { p = "LQM", cat = "inductor" },
+  { p = "LQH", cat = "inductor" },
+  { p = "TMK", cat = "capacitor" },
+  { p = "NEX", cat = "capacitor" },
+  { p = "MLG", cat = "capacitor" },
+  { p = "BLM", cat = "capacitor" },
+  { p = "GRT", cat = "capacitor" },
+  { p = "BLM2", cat = "capacitor" },
+  { p = "GRT1", cat = "capacitor" },
+]
+
+[[vendor]]
+name = "Yageo"
+aliases = ["Yageo", "国巨"]
+prefixes = [
+  { p = "RC0", cat = "resistor" },
+  { p = "RC1", cat = "resistor" },
+  { p = "RC2", cat = "resistor" },
+  { p = "RC3", cat = "resistor" },
+  { p = "RC4", cat = "resistor" },
+  { p = "RC5", cat = "resistor" },
+  { p = "RC6", cat = "resistor" },
+  { p = "RC7", cat = "resistor" },
+  { p = "RC8", cat = "resistor" },
+  { p = "RT0", cat = "resistor" },
+  { p = "RT1", cat = "resistor" },
+  { p = "RT2", cat = "resistor" },
+  { p = "RT3", cat = "resistor" },
+  { p = "RT4", cat = "resistor" },
+  { p = "RT5", cat = "resistor" },
+  { p = "RT6", cat = "resistor" },
+]
+
+[[vendor]]
+name = "Fenghua Advanced Technology"
+aliases = ["Fenghua", "风华高科"]
+prefixes = [
+  { p = "CC1", cat = "capacitor" },
+  { p = "CC0", cat = "capacitor" },
+  { p = "RST", cat = "resistor" },
+]
+
+[[vendor]]
+name = "Chipown Technology"
+aliases = ["Chipown", "芯朋微"]
+prefixes = [
+  { p = "PN", cat = "power" },
+  { p = "PW", cat = "power" },
+]
+
+[[vendor]]
+name = "SG Micro"
+aliases = ["SGMicro", "圣邦微", "圣邦"]
+prefixes = [
+  { p = "SGM2", cat = "analog" },
+  { p = "SGM8", cat = "analog" },
+]
+
+[[vendor]]
+name = "Awinic Technology"
+aliases = ["Awinic", "艾为"]
+prefixes = [
+  { p = "AW3", cat = "analog" },
+  { p = "AW", cat = "analog" },
+]
+
+[[vendor]]
+name = "Nexperia"
+aliases = ["Nexperia", "安世", "安世半导体"]
+prefixes = [
+  { p = "PMEG", cat = "discrete" },
+  { p = "PUM", cat = "transistor" },
+  { p = "BUK6", cat = "transistor" },
+]
+
+[[vendor]]
+name = "Nuvoton Technology"
+aliases = ["Nuvoton", "新唐"]
+prefixes = [
+  { p = "N76", cat = "mcu" },
+  { p = "NUC", cat = "mcu" },
+  { p = "MSH", cat = "mcu" },
+  { p = "NAU", cat = "mcu" },
+]
+
+[[vendor]]
+name = "Holtek Semiconductor"
+aliases = ["Holtek", "合泰"]
+prefixes = [
+  { p = "BSH", cat = "mcu" },
+  { p = "HT", cat = "mcu" },
+]
+
+[[vendor]]
+name = "Geehy Semiconductor"
+aliases = ["Geehy", "极海"]
+prefixes = [
+  { p = "APM32", cat = "mcu" },
+  { p = "ACM32", cat = "mcu" },
+]
+
+[[vendor]]
+name = "Eastsoft Microelectronics"
+aliases = ["Eastsoft", "东软载波"]
+prefixes = [{ p = "ES32", cat = "mcu" }]
+
+[[vendor]]
+name = "Puya Semiconductor"
+aliases = ["Puya", "普亚", "Puya Micro"]
+prefixes = [
+  { p = "P25", cat = "memory" },
+  { p = "P30", cat = "memory" },
+]
+
+[[vendor]]
+name = "SDC-Micro"
+aliases = ["SDC-Micro", "南亚微"]
+prefixes = [{ p = "SDC", cat = "memory" }]
+
+[[vendor]]
+name = "Quectel"
+aliases = ["Quectel", "移远"]
+prefixes = [
+  { p = "EC2", cat = "wireless" },
+  { p = "EC5", cat = "wireless" },
+  { p = "FC", cat = "wireless" },
+]
+
+[[vendor]]
+name = "SIMCom Wireless"
+aliases = ["SIMCom", "芯翼达"]
+prefixes = [
+  { p = "SIM", cat = "wireless" },
+  { p = "A76", cat = "wireless" },
+]
+
+[[vendor]]
+name = "Goodix Technology"
+aliases = ["Goodix", "汇顶"]
+prefixes = [
+  { p = "CHIP", cat = "connectivity" },
+  { p = "GD3", cat = "connectivity" },
+  { p = "GR", cat = "connectivity" },
+]
+
+[[vendor]]
+name = "Sunplus Technology"
+aliases = ["Sunplus", "凌阳"]
+prefixes = [
+  { p = "CS43", cat = "audio" },
+  { p = "CS", cat = "logic" },
+]
+
+[[vendor]]
+name = "Cirrus Logic"
+aliases = ["Cirrus Logic", "Cirrus"]
+prefixes = [
+  { p = "CS4", cat = "audio" },
+  { p = "WM8", cat = "audio" },
+  { p = "WM", cat = "audio" },
+]
+
+[[vendor]]
+name = "Wolfson Microelectronics"
+aliases = ["Wolfson", "欧创芯"]
+prefixes = [{ p = "WM87", cat = "audio" }]
+
+[[vendor]]
+name = "Conexant"
+aliases = ["Conexant"]
+prefixes = [{ p = "CX", cat = "audio" }]
+
+[[vendor]]
+name = "Synaptics"
+aliases = ["Synaptics"]
+prefixes = [
+  { p = "SYNA", cat = "connectivity" },
+  { p = "TD1", cat = "connectivity" },
+]
+
+[[vendor]]
+name = "Beken Communication"
+aliases = ["Beken", "博通集成"]
+prefixes = [
+  { p = "BK7", cat = "wireless" },
+  { p = "BK", cat = "wireless" },
+]
+
+[[vendor]]
+name = "ASR Microelectronics"
+aliases = ["ASR", "翱捷"]
+prefixes = [{ p = "ASR", cat = "wireless" }]
+
+[[vendor]]
+name = "Jieli Technology"
+aliases = ["Jieli", "杰理"]
+prefixes = [{ p = "JL", cat = "audio" }]
+
+[[vendor]]
+name = "Bestechnic"
+aliases = ["Bestechnic", "恒玄"]
+prefixes = [{ p = "BES", cat = "audio" }]
+
+[[vendor]]
+name = "Injoinic Technology"
+aliases = ["Injoinic", "英集芯"]
+prefixes = [{ p = "IP", cat = "power" }]
+
+[[vendor]]
+name = "Southchip Semiconductor"
+aliases = ["Southchip", "南芯"]
+prefixes = [
+  { p = "SC8", cat = "power" },
+  { p = "SC9", cat = "power" },
+]
+
+[[vendor]]
+name = "Joulwatt Technology"
+aliases = ["Joulwatt", "杰华特"]
+prefixes = [{ p = "JW", cat = "power" }]
+
+[[vendor]]
+name = "Vishay Siliconix"
+aliases = []
+prefixes = [{ p = "SiS", cat = "transistor" }]
+
+[[vendor]]
+name = "Alpha & Omega Semiconductor"
+aliases = ["AOS", "万代"]
+prefixes = [
+  { p = "AON", cat = "power" },
+  { p = "AOI", cat = "power" },
+  { p = "AOB", cat = "power" },
+]
+
+[[vendor]]
+name = "Powerex"
+aliases = ["Powerex", "三菱电机"]
+prefixes = [
+  { p = "CM4", cat = "power_module" },
+  { p = "CM8", cat = "power_module" },
+  { p = "CM3", cat = "power_module" },
+]
+
+[[vendor]]
+name = "Torex Semiconductor"
+aliases = ["Torex"]
+prefixes = [
+  { p = "XCL", cat = "power" },
+  { p = "XC6", cat = "power" },
+]
+
+[[vendor]]
+name = "Lite-On Technology"
+aliases = ["Lite-On", "光宝"]
+prefixes = [{ p = "EUP", cat = "power" }]
+
+[[vendor]]
+name = "Mean Well"
+aliases = ["Mean Well", "明纬"]
+prefixes = [
+  { p = "HDR", cat = "power_module" },
+  { p = "LRS", cat = "power_module" },
+]
+
+[[vendor]]
+name = "Chilisin"
+aliases = ["Chilisin", "奇力"]
+prefixes = [
+  { p = "MWSA", cat = "inductor" },
+  { p = "SRP", cat = "inductor" },
+]
+
+[[vendor]]
+name = "Rockchip Electronics"
+aliases = ["Rockchip", "瑞芯微"]
+prefixes = [
+  { p = "RK35", cat = "soc" },
+  { p = "RK33", cat = "soc" },
+  { p = "RK3", cat = "soc" },
+  { p = "RK", cat = "soc" },
+  { p = "RV11", cat = "soc" },
+]
+
+[[vendor]]
+name = "Allwinner Technology"
+aliases = ["Allwinner", "全志"]
+prefixes = [
+  { p = "A10", cat = "soc" },
+  { p = "A64", cat = "soc" },
+]
+
+[[vendor]]
+name = "Amlogic"
+aliases = ["Amlogic", "晶晨"]
+prefixes = [
+  { p = "S905", cat = "soc" },
+  { p = "S922", cat = "soc" },
+  { p = "A311", cat = "soc" },
+]
+
+[[vendor]]
+name = "MediaTek"
+aliases = ["MediaTek", "联发科", "MTK"]
+prefixes = [
+  { p = "Dimensity", cat = "soc" },
+  { p = "MT6", cat = "soc" },
+  { p = "MT8", cat = "soc" },
+]
+
+[[vendor]]
+name = "HiSilicon"
+aliases = ["HiSilicon", "海思"]
+prefixes = [
+  { p = "Kirin", cat = "soc" },
+  { p = "Hi3", cat = "connectivity" },
+]
+
+[[vendor]]
+name = "NVIDIA"
+aliases = ["NVIDIA", "英伟达", "Nvidia"]
+prefixes = [
+  { p = "RTX", cat = "gpu" },
+  { p = "GTX", cat = "gpu" },
+  { p = "H100", cat = "gpu" },
+  { p = "A100", cat = "gpu" },
+  { p = "L40", cat = "gpu" },
+  { p = "H20", cat = "gpu" },
+]
+
+[[vendor]]
+name = "Maxscend Microelectronics"
+aliases = ["Maxscend", "唯捷创芯"]
+prefixes = [{ p = "MXD", cat = "rf" }]
+
+[[vendor]]
+name = "Vanchip"
+aliases = ["Vanchip", "唯捷"]
+prefixes = [{ p = "VC", cat = "rf" }]
+
+[[vendor]]
+name = "Shanghai Belling"
+aliases = ["Belling", "上海贝岭"]
+prefixes = [
+  { p = "BL", cat = "analog" },
+  { p = "BE", cat = "analog" },
+]
+
+[[vendor]]
+name = "CR Micro"
+aliases = ["CR Micro", "华润微"]
+prefixes = [{ p = "CR", cat = "discrete" }]
+
+[[vendor]]
+name = "Innoscience"
+aliases = ["Innoscience", "英诺赛科"]
+prefixes = [{ p = "INN", cat = "discrete" }]
+
+[[vendor]]
+name = "Yangjie Technology"
+aliases = ["Yangjie", "扬杰"]
+prefixes = [{ p = "YS", cat = "discrete" }]
+
+[[vendor]]
+name = "BYD Semiconductor"
+aliases = ["BYD", "比亚迪"]
+prefixes = [{ p = "BYD", cat = "discrete" }]
+
+[[vendor]]
+name = "Lontium Semiconductor"
+aliases = ["Lontium", "龙芯"]
+prefixes = [{ p = "LT", cat = "connectivity" }]
+
+[[vendor]]
+name = "Analogix"
+aliases = ["Analogix", "芯擎"]
+prefixes = [{ p = "AX", cat = "power" }]
+
+[[vendor]]
+name = "Halo Microelectronics"
+aliases = ["Halo Micro", "中颖电子"]
+prefixes = [{ p = "SH88", cat = "mcu" }]
+
+[[vendor]]
+name = "KiWi"
+aliases = ["Kiwi", "翠微"]
+prefixes = [{ p = "KW", cat = "logic" }]
+
+[[vendor]]
+name = "Rayson"
+aliases = ["Rayson", "锐晟"]
+prefixes = [{ p = "S11", cat = "wireless" }]
+
+[[vendor]]
+name = "AirM2M"
+aliases = ["AirM2M"]
+prefixes = [{ p = "M2M", cat = "wireless" }]
+
+[[vendor]]
+name = "MacMic Science & Technology"
+aliases = ["MacMic", "麦科信"]
+prefixes = [{ p = "MXM", cat = "analog" }]
+
+[[vendor]]
+name = "CETC-47"
+aliases = ["CETC47", "中电科47所"]
+prefixes = [{ p = "CETC", cat = "analog" }]
+
+[[vendor]]
+name = "SMIC"
+aliases = ["SMIC", "中芯国际"]
+prefixes = [{ p = "SMIC", cat = "foundry" }]
+
+[[vendor]]
+name = "TSMC"
+aliases = ["TSMC", "台积电"]
+prefixes = [{ p = "TSM", cat = "foundry" }]
+
+[[vendor]]
+name = "Hua Hong"
+aliases = ["Hua Hong", "华虹"]
+prefixes = [{ p = "HH", cat = "foundry" }]
+
+[[vendor]]
+name = "UMC"
+aliases = ["UMC", "联电"]
+prefixes = [{ p = "UMC", cat = "foundry" }]

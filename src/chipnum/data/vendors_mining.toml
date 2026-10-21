@@ -1,0 +1,170 @@
+# Second vendor batch — families found by mining a 7,441-part-number corpus
+# of Chinese-language semiconductor industry articles (2016-2026).
+#
+# Every prefix below was hand-verified against at least one real sample from
+# that corpus. The corpus itself is not redistributed; the regression test
+# tests/test_corpus.py carries a checked subset of the samples.
+#
+# This file is concatenated with vendors.toml at import time. A vendor name
+# may appear in both files — prefixes are merged, not overridden — so a
+# vendor can be extended in either file.
+#
+# HARD RULE learned the hard way: never add a prefix shorter than three
+# characters here. Two-letter prefixes ("V", "M4", "S2") collide with the
+# entire English alphabet of part numbers and destroy precision. If a real
+# family only has a two-character marker, add the third character that
+# disambiguates it (S29GL not S29, M34E not M3) or leave it out and let the
+# part number report as unknown. Reporting "unknown" is correct; confidently
+# naming the wrong vendor is not.
+#
+# Run `python -m chipnum.audit` after editing.
+
+[[vendor]]
+name = "NXP Semiconductors"
+aliases = []
+prefixes = [
+  { p = "S9S12", cat = "mcu" },
+  { p = "S912Z", cat = "mcu" },
+  { p = "MCIMX", cat = "soc" },
+  { p = "MIMX", cat = "soc" },
+  { p = "UJA", cat = "automotive" },
+]
+
+[[vendor]]
+name = "Micron Technology"
+aliases = []
+prefixes = [
+  { p = "MT25Q", cat = "memory" },
+  { p = "MT41K", cat = "memory" },
+  { p = "MT29F", cat = "memory" },
+  { p = "MT53E", cat = "memory" },
+]
+
+[[vendor]]
+name = "Nanya Technology"
+aliases = ["Nanya", "南亚科技"]
+prefixes = [{ p = "NT5C", cat = "memory" }]
+
+[[vendor]]
+name = "SanDisk"
+aliases = []
+prefixes = [{ p = "SSDSC", cat = "memory" }]
+
+[[vendor]]
+name = "Winbond Electronics"
+aliases = []
+prefixes = [{ p = "W631", cat = "memory" }]
+
+[[vendor]]
+name = "Infineon Technologies"
+aliases = []
+prefixes = [
+  { p = "TCAN1", cat = "automotive" },
+  { p = "TCAN", cat = "automotive" },
+  { p = "DRV88", cat = "motor_driver" },
+  { p = "DRV", cat = "motor_driver" },
+  { p = "BAS70", cat = "transistor" },
+  { p = "BAS21", cat = "transistor" },
+  { p = "BAS16", cat = "transistor" },
+  { p = "PDTC", cat = "transistor" },
+]
+
+[[vendor]]
+name = "STMicroelectronics"
+aliases = []
+prefixes = [
+  { p = "BZX84", cat = "discrete" },
+  { p = "BZX38", cat = "discrete" },
+  { p = "BZT52", cat = "transistor" },
+  { p = "LSM6D", cat = "sensor" },
+]
+
+[[vendor]]
+name = "Skyworks Solutions"
+aliases = ["Skyworks", "思达"]
+prefixes = [
+  { p = "SKY77", cat = "rf" },
+  { p = "SKY13", cat = "rf" },
+  { p = "SKY5", cat = "rf" },
+]
+
+[[vendor]]
+name = "ASMC Technology"
+aliases = ["ASMC", "凸科"]
+prefixes = [{ p = "AR803", cat = "connectivity" }]
+
+[[vendor]]
+name = "Nuvoton Technology"
+aliases = []
+prefixes = [{ p = "N32G", cat = "mcu" }]
+
+[[vendor]]
+name = "GigaDevice"
+aliases = []
+prefixes = [{ p = "GD32F", cat = "mcu" }]
+
+[[vendor]]
+name = "Fudan Microelectronics"
+aliases = ["Fudan Micro", "复旦微"]
+prefixes = [
+  { p = "FM33", cat = "mcu" },
+  { p = "FM15", cat = "mcu" },
+]
+
+[[vendor]]
+name = "Analog Devices"
+aliases = []
+prefixes = [
+  { p = "ADUM", cat = "digital_interface" },
+  { p = "ADV7", cat = "analog" },
+]
+
+[[vendor]]
+name = "Texas Instruments"
+aliases = []
+prefixes = [
+  { p = "F2800", cat = "dsp" },
+  { p = "F2837", cat = "dsp" },
+  { p = "F2833", cat = "dsp" },
+]
+
+[[vendor]]
+name = "Infineon Technologies"
+aliases = []
+prefixes = [{ p = "P87", cat = "digital_interface" }]
+
+[[vendor]]
+name = "Nanya Technology"
+aliases = []
+prefixes = [{ p = "KLM", cat = "memory" }]
+
+[[vendor]]
+name = "Silicon Labs"
+aliases = []
+prefixes = [{ p = "SLY", cat = "wireless" }]
+
+[[vendor]]
+name = "Diodes Incorporated"
+aliases = []
+prefixes = [
+  { p = "MMBTA", cat = "transistor" },
+  { p = "MMBT", cat = "transistor" },
+  { p = "SMBJ", cat = "discrete" },
+  { p = "P6KE", cat = "discrete" },
+]
+
+[[vendor]]
+name = "onsemi"
+aliases = []
+prefixes = [{ p = "MURA", cat = "transistor" }]
+[[vendor]]
+name = "Melexis"
+aliases = ["Melexis NV"]
+prefixes = [
+  { p = "MLX", cat = "sensor" },
+]
+
+[[vendor]]
+name = "Melexis Semiconductors"
+aliases = []
+prefixes = [{ p = "TH", cat = "sensor" }]

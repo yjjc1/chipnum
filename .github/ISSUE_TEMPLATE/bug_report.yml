@@ -1,0 +1,84 @@
+---
+name: Bug report
+description: Report a wrong result, a crash, or a missing vendor.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. If chipnum named the **wrong vendor** for a part
+        number, that is the most valuable bug report this project can get —
+        please fill in the "Correct vendor" field.
+
+  - type: input
+    id: part-number
+    attributes:
+      label: Part number
+      description: The part number, exactly as you entered it (keep hyphens).
+      placeholder: STM32G491RET6
+    validations:
+      required: true
+
+  - type: dropdown
+    id: what-happened
+    attributes:
+      label: What happened?
+      options:
+        - Wrong vendor
+        - Wrong category
+        - Part number not detected
+        - False positive (not a part number was detected)
+        - Crash or error
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: expected-vendor
+    attributes:
+      label: Correct vendor
+      description: If chipnum named the wrong vendor, what is the right one?
+      placeholder: STMicroelectronics
+
+  - type: input
+    id: expected-category
+    attributes:
+      label: Correct category
+      description: If the category was wrong, what is the right one?
+      placeholder: mcu
+
+  - type: textarea
+    id: input-text
+    attributes:
+      label: The text you ran it on
+      description: The smallest snippet that reproduces the problem.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Command run
+      description: The exact command line.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: What chipnum printed.
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: chipnum-version
+    attributes:
+      label: chipnum version
+      description: Output of "chipnum --version".
+      placeholder: 0.1.0
+    validations:
+      required: true
