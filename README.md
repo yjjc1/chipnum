@@ -4,8 +4,6 @@
 
 [![CI](https://github.com/yjjc1/chipnum/actions/workflows/ci.yml/badge.svg)](https://github.com/yjjc1/chipnum/actions/workflows/ci.yml)
 [![Vendor table audit](https://github.com/yjjc1/chipnum/actions/workflows/audit.yml/badge.svg)](https://github.com/yjjc1/chipnum/actions/workflows/audit.yml)
-[![PyPI](https://img.shields.io/pypi/v/chipnum.svg)](https://pypi.org/project/chipnum/)
-[![Python](https://img.shields.io/pypi/pyversions/chipnum.svg)](https://pypi.org/project/chipnum/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 `chipnum` pulls manufacturer part numbers (MPNs) out of prose, tables, CSV
@@ -47,19 +45,22 @@ outrank specific ones.
 
 ## Install
 
+From GitHub (this is what works today):
+
 ```console
-pip install chipnum
+pip install git+https://github.com/yjjc1/chipnum.git
 ```
 
-No runtime dependencies. Python 3.10+.
-
-From source:
+Or clone it:
 
 ```console
 git clone https://github.com/yjjc1/chipnum.git
 cd chipnum
 pip install -e ".[dev]"
 ```
+
+No runtime dependencies. Python 3.10+. The CLI is available as `chipnum`,
+or as `python -m chipnum.cli`.
 
 ---
 
