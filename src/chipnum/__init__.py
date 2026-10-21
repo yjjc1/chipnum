@@ -7,7 +7,7 @@ from .extract import Candidate, extract, extract_unique, score_token
 from .normalize import compact, fold, is_plausible, normalise, split_suffix
 from .vendors import Identity, identity, lookup, lookup_many, resolve_vendor, vendor_names
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "CATEGORIES",
