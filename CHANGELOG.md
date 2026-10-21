@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Publishing to PyPI on a version tag. The `publish` job authenticates with
+  the `PYPI_API_TOKEN` repository secret — the token is never stored in the
+  repository — and verifies the built distributions with `twine check`
+  before uploading, including an assertion that the vendor table is actually
+  packaged in the wheel.
+- The PyPI badge and `pip install chipnum` in the README.
+
 ### Fixed
 
 - The `LT` prefix was claimed by Texas Instruments, but it is split across

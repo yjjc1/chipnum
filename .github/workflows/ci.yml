@@ -60,7 +60,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -70,5 +70,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip build
           python -m build
+      - name: Check the distribution metadata
+        run: |
+          python -m pip install --upgrade pip twine
+          twine check dist/*
+          python - <<'PY'
+          import glob, zipfile
+          wheel = glob.glob("dist/*.whl")[0]
+          with zipfile.ZipFile(wheel) as z:
+              names = z.namelist()
+          data = [n for n in names if "/data/" in n]
+          assert data, "the vendor table must be packaged in the wheel"
+          print("packaged data files:", data)
+          PY
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        env:
+          # Stored as a repository secret, never in the repository itself.
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          python -m pip install --upgrade pip twine
+          python -m twine upload dist/*

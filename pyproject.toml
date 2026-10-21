@@ -9,7 +9,7 @@ description = "Extract, normalise and classify semiconductor part numbers from f
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "chipnum contributors" }]
+authors = [{ name = "yjjc1", email = "88436924+yjjc1@users.noreply.github.com" }]
 keywords = [
     "semiconductor",
     "part-number",
