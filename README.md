@@ -50,7 +50,7 @@ No runtime dependencies. Python 3.10+.
 From source:
 
 ```console
-git clone https://github.com/OWNER/chipnum.git
+git clone https://github.com/yjjc1/chipnum.git
 cd chipnum
 pip install -e ".[dev]"
 ```
@@ -92,6 +92,31 @@ STM32G491RET6,STMicroelectronics,mcu,Microcontroller,high
 LMX9838SB,Texas Instruments,analog,Analog / Mixed-signal,high
 IRFP9140NPBF,Infineon Technologies,discrete,Discrete Semiconductor,high
 ```
+
+### Resolve to a stable identity
+
+When the same die appears spelled several ways across documents, join on the
+identity rather than the string:
+
+```console
+$ chipnum identity "STM32F103C8T6" "stm32-f103c8t6" "LM358" --summary
+4 part numbers, 3 distinct identities
+
+pn,key,vendor,category,confidence
+STM32F103C8T6,STM32F103C8T6,STMicroelectronics,mcu,high
+LM358,LM358,Texas Instruments,analog,low
+```
+
+```python
+import chipnum
+
+chipnum.identity("stm32 f103c8t6").key
+# 'STM32F103C8T6'
+```
+
+`key` is separator-free and stable across spellings, which is what you want
+when merging two BOMs or a BOM with a set of articles. `pn` keeps the
+canonical spelling for display.
 
 ### Audit the vendor table
 
@@ -210,7 +235,7 @@ carries a checked subset.
 
 ```console
 pip install -e ".[dev]"
-pytest              # 158 tests
+pytest              # 191 tests
 ruff check .
 python -m chipnum.audit
 ```

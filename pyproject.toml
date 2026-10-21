@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chipnum"
-version = "0.1.0"
+version = "0.2.0"
 description = "Extract, normalise and classify semiconductor part numbers from free text."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -42,9 +42,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/OWNER/chipnum"
-Repository = "https://github.com/OWNER/chipnum"
-Issues = "https://github.com/OWNER/chipnum/issues"
+Homepage = "https://github.com/yjjc1/chipnum"
+Repository = "https://github.com/yjjc1/chipnum"
+Issues = "https://github.com/yjjc1/chipnum/issues"
 
 [project.scripts]
 chipnum = "chipnum.cli:main"

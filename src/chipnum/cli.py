@@ -20,7 +20,7 @@ from . import __version__
 from .audit import report
 from .extract import extract_unique
 from .normalize import normalise
-from .vendors import lookup_many, vendor_names
+from .vendors import identity, lookup_many, vendor_names
 
 
 def _read_inputs(paths: list[str] | str) -> tuple[str, int]:
@@ -175,6 +175,36 @@ def _part_numbers_from_text(text: str) -> list[str]:
     return out
 
 
+def cmd_identity(args: argparse.Namespace) -> int:
+    """Resolve part numbers to a stable identity, independent of spelling."""
+    pns: list[str] = list(args.part_numbers)
+    if args.input:
+        text, failures = _read_inputs(args.input)
+        _die_on_failure(failures)
+        pns.extend(_part_numbers_from_text(text))
+
+    rows: list[dict] = []
+    seen: dict[str, str] = {}
+    for pn in pns:
+        ident = identity(pn)
+        if not ident.key:
+            continue
+        # Report the first spelling seen for a key, and note the others.
+        if ident.key in seen:
+            continue
+        seen[ident.key] = ident.pn
+        rows.append(ident.as_dict())
+
+    _write_rows(rows, args.format, sys.stdout)
+
+    if args.summary and rows:
+        print(
+            f"\n{len(pns)} part numbers, {len(rows)} distinct identities",
+            file=sys.stderr,
+        )
+    return 0
+
+
 def cmd_vendors(args: argparse.Namespace) -> int:
     if args.audit:
         corpus: list[str] = []
@@ -245,6 +275,21 @@ def build_parser() -> argparse.ArgumentParser:
     p_lookup.add_argument("--unmatched-only", action="store_true", help="only print unknowns")
     add_format(p_lookup)
     p_lookup.set_defaults(func=cmd_lookup)
+
+    p_identity = sub.add_parser(
+        "identity", help="resolve part numbers to a stable identity across spellings"
+    )
+    p_identity.add_argument("part_numbers", nargs="*", help="part numbers to resolve")
+    p_identity.add_argument(
+        "--input",
+        action="append",
+        default=[],
+        metavar="FILE",
+        help="file with one part number per line, or - for stdin; repeatable",
+    )
+    p_identity.add_argument("--summary", action="store_true", help="print stats to stderr")
+    add_format(p_identity)
+    p_identity.set_defaults(func=cmd_identity)
 
     p_vendors = sub.add_parser("vendors", help="list or audit the vendor table")
     p_vendors.add_argument("--audit", action="store_true", help="report table defects")

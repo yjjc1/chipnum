@@ -254,6 +254,53 @@ def _first_match(candidate: str, min_len: int) -> tuple[_Prefix, str, str] | Non
     return best, best.vendor, best.category
 
 
+@dataclass(frozen=True)
+class Identity:
+    """A part number's stable identity, independent of how it was spelled.
+
+    Two part numbers that denote the same die share a ``key``, even when they
+    are written differently (``STM32F103C8T6`` vs ``STM32-F103C8T6``). This
+    is what you join on when merging two BOMs, or a BOM with a set of
+    articles, and it is deliberately separate from :class:`Match` — a match
+    describes one spelling, an identity describes the die.
+    """
+
+    pn: str
+    key: str
+    vendor: str | None = None
+    category: str = "unknown"
+    confidence: str = "none"
+
+    def as_dict(self) -> dict:
+        return {
+            "pn": self.pn,
+            "key": self.key,
+            "vendor": self.vendor,
+            "category": self.category,
+            "confidence": self.confidence,
+        }
+
+
+def identity(pn: str) -> Identity:
+    """Return the stable identity of ``pn``.
+
+    >>> identity("stm32 f103c8t6").key
+    'STM32F103C8T6'
+    >>> identity("STM32-F103C8T6").key == identity("stm32f103c8t6").key
+    True
+    """
+    norm = normalise(pn)
+    key = compact(norm)
+    match = lookup(norm)
+    return Identity(
+        pn=norm,
+        key=key,
+        vendor=match.vendor,
+        category=match.category,
+        confidence=match.confidence,
+    )
+
+
 def lookup_many(pns: list[str]) -> dict[str, Match]:
     """Resolve a batch, deduplicating repeated part numbers."""
     out: dict[str, Match] = {}

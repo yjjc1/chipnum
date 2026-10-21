@@ -1,0 +1,29 @@
+name: Vendor table audit
+
+# The vendor table is data, and data rots. This job re-checks its integrity
+# on every push so that an over-broad prefix is caught by CI rather than by a
+# user.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Weekly, because a table that only changes when someone pushes is a
+    # table nobody is maintaining.
+    - cron: "0 6 * * 1"
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+      - name: Audit the vendor table
+        run: python -m chipnum.audit
