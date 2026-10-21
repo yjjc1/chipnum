@@ -133,6 +133,31 @@ class TestConfidence:
     def test_st_lm3_still_st(self):
         assert lookup("LM3S811").vendor == "STMicroelectronics"
 
+    def test_ltm_is_analog_devices_not_ti(self):
+        # LTM is Linear Technology's uModule line (now ADI). TI's generic
+        # "LT" prefix used to claim it.
+        assert lookup("LTM4644IY").vendor == "Analog Devices"
+        assert lookup("LTM4700IY").vendor == "Analog Devices"
+
+    def test_ltc_is_analog_devices(self):
+        assert lookup("LTC2411IMS").vendor == "Analog Devices"
+
+    def test_lt1_line_is_ti(self):
+        # TI holds the LT1xxx line; Linear Technology holds LTC/LTM/LT3/LT8.
+        assert lookup("LT1765ES8").vendor == "Texas Instruments"
+
+    def test_lontium_lt_family(self):
+        # Lontium's LT86xx/LT97xx are USB-C and display-bridge controllers,
+        # not Analog Devices parts.
+        assert lookup("LT8611EXA").vendor == "Lontium Semiconductor"
+        assert lookup("LT8641UXE").vendor == "Lontium Semiconductor"
+
+    def test_conexant_cx_family_is_narrow(self):
+        # The generic "CX" prefix also matched CXD2826 and CXDB4CBAM, which
+        # are not Conexant parts.
+        assert lookup("CX20706-21Z").vendor == "Conexant"
+        assert lookup("CXD2826ER").vendor != "Conexant"
+
     def test_unmatched_has_no_confidence(self):
         assert lookup("ZZZ-9999-QQQ").confidence == "none"
 

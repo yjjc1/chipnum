@@ -221,10 +221,10 @@ from 5,415 Chinese-language semiconductor industry articles (2016–2026):
 | | count | share |
 |---|---:|---:|
 | part numbers in corpus | 7,441 | 100% |
-| resolved to a vendor | 4,265 | 57.3% |
-| — high confidence | 3,568 | 48.0% |
-| — low confidence | 697 | 9.4% |
-| left unresolved | 3,176 | 42.7% |
+| resolved to a vendor | 4,247 | 57.1% |
+| — high confidence | 3,605 | 48.4% |
+| — low confidence | 642 | 8.6% |
+| left unresolved | 3,194 | 42.9% |
 
 Roughly 43% of the corpus is passive components, connectors, inductors,
 modules and unbranded parts that no vendor-prefix table can resolve. They are
@@ -242,7 +242,7 @@ carries a checked subset.
 
 ```console
 pip install -e ".[dev]"
-pytest              # 191 tests
+pytest              # 196 tests
 ruff check .
 python -m chipnum.audit
 ```

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- The `LT` prefix was claimed by Texas Instruments, but it is split across
+  three vendors: TI holds the LT1xxx line, Linear Technology (now Analog
+  Devices) holds LTC/LTM/LTR/LT3/LT4/LT6/LT8x, and Lontium holds the
+  LT6911/LT86xx/LT97xx USB-C and display-bridge controllers. The table now
+  lists only the specific families each vendor owns, so `LTM4644IY` resolves
+  to Analog Devices rather than TI, and `LT8611EXA` resolves to Lontium
+  rather than being claimed by a generic prefix. An `LT...` part outside
+  those families resolves to no vendor, which is the correct outcome.
+- Conexant's generic `CX` prefix also matched `CXD2826` and `CXDB4CBAM`,
+  which are not Conexant parts. Narrowed to the `CX1`/`CX2` families.
+
 ## [0.2.0] - 2026-10-21
 
 ### Added

@@ -12,6 +12,22 @@
 # Adding a vendor never requires touching Python code — see
 # docs/adding-vendors.md. Run `python -m chipnum.audit` after any edit.
 
+# NOTE on the "LT" family, which is split across three vendors.
+#
+# "LT" is one of the most contested prefixes in electronics:
+#   - Texas Instruments holds the LT1xxx line (LT1054, LT1171, LT1461,
+#     LT1765, LT1930 — low-noise and micropower amplifiers, comparators).
+#   - Linear Technology, now part of Analog Devices, holds the LTCxxxx
+#     (signal-chain), LTMxxxx (uModule power modules), LTRxxxx (resistor
+#     networks), LT3xxx, LT4xxx, LT6xxx and LT8xxx lines.
+#   - Lontium holds the LT6911/LT8611/LT8641/LT87xx/LT97xx USB-C and
+#     display-bridge controllers.
+#
+# So there is no correct answer for a bare "LT", and the table deliberately
+# does not claim one. Each vendor lists only the specific families it owns.
+# An "LT..." part outside those families resolves to no vendor, which is the
+# correct outcome.
+
 [[vendor]]
 name = "Texas Instruments"
 aliases = ["TI", "德州仪器", "德州"]
@@ -61,7 +77,7 @@ prefixes = [
   { p = "PWL", cat = "power" },
   { p = "TL", cat = "analog" },
   { p = "LM", cat = "analog" },
-  { p = "LT", cat = "analog" },
+  { p = "LT1", cat = "analog" },
   { p = "TL0", cat = "analog" },
   { p = "TLH", cat = "analog" },
 ]
@@ -152,6 +168,13 @@ prefixes = [
   { p = "MAX318", cat = "analog" },
   { p = "MAX", cat = "analog" },
   { p = "LTC", cat = "analog" },
+  { p = "LTM", cat = "power" },
+  { p = "LTR", cat = "resistor" },
+  { p = "LT4", cat = "analog" },
+  { p = "LT6", cat = "analog" },
+  { p = "LT83", cat = "power" },
+  { p = "LT85", cat = "analog" },
+  { p = "LT860", cat = "power" },
   { p = "LTC6", cat = "analog" },
   { p = "LTC2", cat = "analog" },
   { p = "LT3", cat = "analog" },
@@ -734,7 +757,10 @@ prefixes = [{ p = "WM87", cat = "audio" }]
 [[vendor]]
 name = "Conexant"
 aliases = ["Conexant"]
-prefixes = [{ p = "CX", cat = "audio" }]
+prefixes = [
+  { p = "CX1", cat = "audio" },
+  { p = "CX2", cat = "audio" },
+]
 
 [[vendor]]
 name = "Synaptics"
@@ -935,7 +961,15 @@ prefixes = [{ p = "BYD", cat = "discrete" }]
 [[vendor]]
 name = "Lontium Semiconductor"
 aliases = ["Lontium", "龙芯"]
-prefixes = [{ p = "LT", cat = "connectivity" }]
+prefixes = [
+  { p = "LT691", cat = "connectivity" },
+  { p = "LT861", cat = "connectivity" },
+  { p = "LT863", cat = "connectivity" },
+  { p = "LT864", cat = "connectivity" },
+  { p = "LT865", cat = "connectivity" },
+  { p = "LT872", cat = "connectivity" },
+  { p = "LT972", cat = "connectivity" },
+]
 
 [[vendor]]
 name = "Analogix"
